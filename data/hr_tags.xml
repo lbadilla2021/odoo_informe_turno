@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_tag_prevencionistas" model="hr.employee.category">
+        <field name="name">Prevencionistas</field>
+    </record>
+
+    <record id="hr_tag_operadores" model="hr.employee.category">
+        <field name="name">Operadores</field>
+    </record>
+
+    <record id="hr_tag_operadores_servicios" model="hr.employee.category">
+        <field name="name">Operadores de Servicios</field>
+    </record>
+</odoo>

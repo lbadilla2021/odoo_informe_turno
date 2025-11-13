@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_it_informes" model="ir.actions.act_window">
+        <field name="name">Informes</field>
+        <field name="res_model">it.informe</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p>Crea y gestiona Informes de Turno.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_it_root" name="Informe Turno" sequence="10"/>
+    <menuitem id="menu_it_informe" name="Informe" parent="menu_it_root" sequence="10"/>
+    <menuitem id="menu_it_tablas" name="Tablas" parent="menu_it_root" sequence="20"/>
+    <menuitem id="menu_it_personas" name="Personas" parent="menu_it_root" sequence="30"/>
+
+    <menuitem id="menu_it_informes" name="Informes" parent="menu_it_informe" action="action_it_informes" sequence="10"/>
+
+    <record id="action_it_area" model="ir.actions.act_window">
+        <field name="name">Áreas</field>
+        <field name="res_model">it.area</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_it_area" name="Áreas" parent="menu_it_tablas" action="action_it_area" sequence="10"/>
+
+    <record id="action_it_tipo_trabajo" model="ir.actions.act_window">
+        <field name="name">Tipos de trabajo</field>
+        <field name="res_model">it.tipo.trabajo</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_it_tipo_trabajo" name="Tipos de trabajo" parent="menu_it_tablas" action="action_it_tipo_trabajo" sequence="20"/>
+
+    <record id="action_it_especialidad" model="ir.actions.act_window">
+        <field name="name">Especialidades</field>
+        <field name="res_model">it.especialidad</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_it_especialidad" name="Especialidades" parent="menu_it_tablas" action="action_it_especialidad" sequence="30"/>
+
+    <record id="view_hr_employee_tree_readonly" model="ir.ui.view">
+        <field name="name">hr.employee.tree.readonly.for.it</field>
+        <field name="model">hr.employee</field>
+        <field name="arch" type="xml">
+            <tree create="0" edit="0" delete="0">
+                <field name="identification_id"/>
+                <field name="name"/>
+                <field name="job_id"/>
+                <field name="work_email"/>
+                <field name="work_phone"/>
+                <field name="category_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_it_employees_readonly" model="ir.actions.act_window">
+        <field name="name">Empleados (solo lectura)</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_hr_employee_tree_readonly"/>
+        <field name="context">{"search_default_group_by_department_id": 0}</field>
+    </record>
+    <menuitem id="menu_it_employees_readonly" name="Empleados (solo lectura)" parent="menu_it_personas" action="action_it_employees_readonly" sequence="10"/>
+
+    <record id="action_hr_employee_category" model="ir.actions.act_window">
+        <field name="name">Etiquetas de cargo</field>
+        <field name="res_model">hr.employee.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_it_employee_category" name="Etiquetas de cargo" parent="menu_it_personas" action="action_hr_employee_category" sequence="20"/>
+
+    <record id="it_informe_tree" model="ir.ui.view">
+        <field name="name">it.informe.tree</field>
+        <field name="model">it.informe</field>
+        <field name="arch" type="xml">
+            <!-- Vista OWL moderna, solo lectura -->
+            <tree
+                string="Informes"
+                js_class="ListView"
+                create="true"
+                delete="true"
+                edit="false"
+                multi_edit="false"
+                sample="1">
+                <field name="code"/>
+                <field name="fecha_ejecucion"/>
+                <field name="establecimiento_id"/>
+                <field name="area_id"/>
+                <field name="tipo_trabajo_id"/>
+                <field name="supervisor_id"/>
+
+                <field name="hora_inicio_faena" widget="float_time"/>
+                <field name="hora_fin_faena" widget="float_time"/>
+                <field name="hora_entrada_real" widget="float_time"/>
+                <field name="hora_salida_real" widget="float_time"/>
+
+                <field name="nombre_equipo"/>
+                <field name="tag"/>
+                <field name="tipo_trabajo_id"/>
+                <field name="especialidad_id"/>
+                <field name="pedido_os"/>
+
+                <field name="descripcion" placeholder="Describe el servicio realizado..."/>
+                <field name="observaciones_servicio" placeholder="Observaciones adicionales..."/>
+                
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="it_informe_form" model="ir.ui.view">
+        <field name="name">it.informe.form</field>
+        <field name="model">it.informe</field>
+        <field name="arch" type="xml">
+            <form string="Informe de Turno" create="1" edit="1">
+                <sheet>
+                    <group col="6">
+                        <field name="code" modifiers="{'readonly': [('id','!=', False)]}"/>
+                        <field name="fecha_ejecucion"/>
+                        <field name="establecimiento_id" options="{'no_create_edit': True}"/>
+                        <field name="supervisor_id" readonly="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Servicio">
+                            <group col="4">
+                                <field name="hora_entrada_real"/>
+                                <field name="hora_salida_real"/>
+                                <field name="hora_inicio_faena"/>
+                                <field name="hora_fin_faena"/>
+                            </group>
+                            <group col="4">
+                                <field name="area_id"/>
+                                <field name="nombre_equipo"/>
+                                <field name="tag"/>
+                                <field name="tipo_trabajo_id"/>
+                                <field name="especialidad_id"/>
+                                <field name="pedido_os"/>
+                            </group>
+                            <group>
+                                <field name="descripcion" placeholder="Describe el servicio realizado..."/>
+                                <field name="observaciones_servicio" placeholder="Observaciones adicionales..."/>
+                            </group>
+                        </page>
+                        <page string="Personas">
+                            <group col="4">
+                                <field name="ito_planta"/>
+                                <field name="prevencionista_id" domain="[('category_ids','in', [%(informe_turno.hr_tag_prevencionistas)d])]"/>
+                                <field
+                                    name="operador_ids"
+                                    widget="many2many_tags"
+                                    domain="[('category_ids', 'in', [%(informe_turno.hr_tag_operadores)d])]"
+                                />
+
+                                <field
+                                    name="operador_servicio_ids"
+                                    widget="many2many_tags"
+                                    domain="[('category_ids', 'in', [%(informe_turno.hr_tag_operadores_servicios)d])]"
+                                />
+                            </group>
+                        </page>
+                        <page string="Recursos">
+                            <group string="Camioneta" col="4">
+                                <field name="camioneta_id"/>
+                                <field name="km_camioneta"/>
+                            </group>
+                            <group string="Camión" col="4">
+                                <field name="camion_id"/>
+                                <field name="km_camion"/>
+                            </group>
+                            <group string="Bomba" col="4">
+                                <field name="bomba_id"/>
+                                <field name="horometro"/>
+                            </group>
+                        </page>
+                        <page string="Otros">
+                            <group col="4">
+                                <field name="alojamiento"/>
+                                <field name="cant_personas"/>
+                                <field name="barreras_quimica"/>
+                                <field name="cant_barreras_quimicas"/>
+                                <field name="aspirado_alta_temperatura"/>
+                            </group>
+                        </page>
+
+                        <page string="Adjuntos">
+                            <group col="1">
+
+                                <!-- Informe de Turno -->
+                                <separator string="Informe de Turno"/>
+                                <field name="doc_informe_turno"
+                                    filename="doc_informe_turno_name"
+                                    widget="binary"/>
+
+                                <!-- Informe de Capacitación -->
+                                <separator string="Informe de Capacitación"/>
+                                <field name="doc_informe_capacitacion"
+                                    filename="doc_informe_capacitacion_name"
+                                    widget="binary"/>
+
+                            </group>
+
+                            <group string="Fotos Antes/Después">
+                                <field name="foto_pair_ids" context="{'default_informe_id': active_id}">
+                                    <tree editable="bottom">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="seccion"/>
+                                        <field name="etiqueta"/>
+                                        <field name="foto_antes" widget="image"/>
+                                        <field name="foto_despues" widget="image"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+
+
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="it_informe_form_fotos" model="ir.ui.view">
+        <field name="name">it.informe.form.fotos</field>
+        <field name="model">it.informe</field>
+        <field name="arch" type="xml">
+            <form string="Informe de Turno - Fotos">
+                <sheet>
+                    <group col="6">
+                        <field name="code" modifiers="{'readonly': [('id','!=', False)]}"/>
+                        <field name="fecha_ejecucion"/>
+                        <field name="establecimiento_id" options="{'no_create_edit': True}"/>
+                        <field name="supervisor_id" readonly="1"/>
+                    </group>
+                    <group string="Fotos Antes/Después">
+                        <field name="foto_pair_ids" context="{'default_informe_id': active_id}">
+                            <tree editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="seccion"/>
+                                <field name="etiqueta"/>
+                                <field name="foto_antes" widget="image"/>
+                                <field name="foto_despues" widget="image"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_it_informes_fotos" model="ir.actions.act_window">
+        <field name="name">Fotos</field>
+        <field name="res_model">it.informe</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="it_informe_form_fotos"/>
+        <field name="help" type="html">
+            <p>Captura de fotos Antes/Después por sección.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_it_fotos" name="Fotos" parent="menu_it_informe" action="action_it_informes_fotos" sequence="20"/>
+
+</odoo>

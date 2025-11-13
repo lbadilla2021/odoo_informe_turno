@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_it_informe_code" model="ir.sequence">
+        <field name="name">Informe Turno</field>
+        <field name="code">it.informe</field>
+        <field name="padding">6</field>
+    </record>
+</odoo>
