@@ -77,16 +77,37 @@
         <field name="model">it.informe</field>
         <field name="arch" type="xml">
             <tree string="Informes" create="true" delete="true">
-                <field name="code"/>
-                <field name="fecha_ejecucion"/>
-                <field name="establecimiento_id"/>
-                <field name="area_id"/>
-                <field name="tipo_trabajo_id"/>
-                <field name="supervisor_id"/>
-                <field name="hora_inicio_faena"/>
-                <field name="hora_fin_faena"/>
-                <field name="hora_entrada_real"/>
-                <field name="hora_salida_real"/>
+                <field name="code" optional="show"/>
+                <field name="fecha_ejecucion" optional="show"/>
+                <field name="establecimiento_id" optional="show"/>
+                <field name="area_id" optional="show"/>
+                <field name="tipo_trabajo_id" optional="show"/>
+                <field name="supervisor_id" optional="show"/>
+                <field name="hora_inicio_faena" optional="show"/>
+                <field name="hora_fin_faena" optional="show"/>
+                <field name="hora_entrada_real" optional="show"/>
+                <field name="hora_salida_real" optional="show"/>
+                <field name="operador_ids" widget="many2many_tags" optional="hide"/>
+                <field name="operador_servicio_ids" widget="many2many_tags" optional="hide"/>
+                <field name="nombre_equipo" optional="hide"/>
+                <field name="tag" optional="hide"/>
+                <field name="especialidad_id" optional="hide"/>
+                <field name="pedido_os" optional="hide"/>
+                <field name="descripcion" optional="hide"/>
+                <field name="observaciones_servicio" optional="hide"/>
+                <field name="ito_planta" optional="hide"/>
+                <field name="prevencionista_id" optional="hide"/>
+                <field name="camioneta_id" optional="hide"/>
+                <field name="km_camioneta" optional="hide"/>
+                <field name="camion_id" optional="hide"/>
+                <field name="km_camion" optional="hide"/>
+                <field name="bomba_id" optional="hide"/>
+                <field name="horometro" optional="hide"/>
+                <field name="alojamiento" optional="hide"/>
+                <field name="cant_personas" optional="hide"/>
+                <field name="barreras_quimica" optional="hide"/>
+                <field name="cant_barreras_quimicas" optional="hide"/>
+                <field name="aspirado_alta_temperatura" optional="hide"/>
             </tree>
         </field>
     </record>
