@@ -97,12 +97,9 @@
                 <field name="observaciones_servicio" optional="hide"/>
                 <field name="ito_planta" optional="hide"/>
                 <field name="prevencionista_id" optional="hide"/>
-                <field name="camioneta_id" optional="hide"/>
-                <field name="km_camioneta" optional="hide"/>
-                <field name="camion_id" optional="hide"/>
-                <field name="km_camion" optional="hide"/>
-                <field name="bomba_id" optional="hide"/>
-                <field name="horometro" optional="hide"/>
+                <field name="camioneta_count" optional="hide"/>
+                <field name="camion_count" optional="hide"/>
+                <field name="bomba_count" optional="hide"/>
                 <field name="alojamiento" optional="hide"/>
                 <field name="cant_personas" optional="hide"/>
                 <field name="barreras_quimica" optional="hide"/>
@@ -161,17 +158,29 @@
                         <!-- Página Recursos -->
                         <page string="Recursos">
                             <group col="4">
-                                <group string="Camioneta">
-                                    <field name="camioneta_id"/>
-                                    <field name="km_camioneta"/>
+                                <group string="Camionetas">
+                                    <field name="camioneta_line_ids">
+                                        <tree editable="bottom">
+                                            <field name="camioneta_id"/>
+                                            <field name="kilometraje"/>
+                                        </tree>
+                                    </field>
                                 </group>
-                                <group string="Camión">
-                                    <field name="camion_id"/>
-                                    <field name="km_camion"/>
+                                <group string="Camiones">
+                                    <field name="camion_line_ids">
+                                        <tree editable="bottom">
+                                            <field name="camion_id"/>
+                                            <field name="kilometraje"/>
+                                        </tree>
+                                    </field>
                                 </group>
-                                <group string="Bomba">
-                                    <field name="bomba_id"/>
-                                    <field name="horometro"/>
+                                <group string="Bombas">
+                                    <field name="bomba_line_ids">
+                                        <tree editable="bottom">
+                                            <field name="bomba_id"/>
+                                            <field name="horometro"/>
+                                        </tree>
+                                    </field>
                                 </group>
                             </group>
                         </page>

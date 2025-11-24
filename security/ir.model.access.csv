@@ -7,3 +7,9 @@ access_it_foto_pair_admin,it.foto.pair admin,model_it_informe_foto_pair,base.gro
 access_it_area_admin,it.area admin,model_it_area,base.group_system,1,1,1,1
 access_it_tipo_admin,it.tipo admin,model_it_tipo_trabajo,base.group_system,1,1,1,1
 access_it_especialidad_admin,it.especialidad admin,model_it_especialidad,base.group_system,1,1,1,1
+access_it_camioneta_user,it.informe.camioneta user,model_it_informe_camioneta,informe_turno.group_it_own,1,1,1,1
+access_it_camioneta_admin,it.informe.camioneta admin,model_it_informe_camioneta,base.group_system,1,1,1,1
+access_it_camion_user,it.informe.camion user,model_it_informe_camion,informe_turno.group_it_own,1,1,1,1
+access_it_camion_admin,it.informe.camion admin,model_it_informe_camion,base.group_system,1,1,1,1
+access_it_bomba_user,it.informe.bomba user,model_it_informe_bomba,informe_turno.group_it_own,1,1,1,1
+access_it_bomba_admin,it.informe.bomba admin,model_it_informe_bomba,base.group_system,1,1,1,1
