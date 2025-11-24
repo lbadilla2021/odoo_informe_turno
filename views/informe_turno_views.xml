@@ -83,10 +83,14 @@
                 <field name="area_id" optional="show"/>
                 <field name="tipo_trabajo_id" optional="show"/>
                 <field name="supervisor_id" optional="show"/>
-                <field name="hora_inicio_faena" optional="show"/>
-                <field name="hora_fin_faena" optional="show"/>
                 <field name="hora_entrada_real" optional="show"/>
+                <field name="hora_entrada_real_fecha" optional="show"/>
+                <field name="hora_inicio_faena" optional="show"/>
+                <field name="hora_inicio_faena_fecha" optional="show"/>
+                <field name="hora_fin_faena" optional="show"/>
+                <field name="hora_fin_faena_fecha" optional="show"/>
                 <field name="hora_salida_real" optional="show"/>
+                <field name="hora_salida_real_fecha" optional="show"/>
                 <field name="operador_ids" widget="many2many_tags" optional="hide"/>
                 <field name="operador_servicio_ids" widget="many2many_tags" optional="hide"/>
                 <field name="nombre_equipo" optional="hide"/>
@@ -129,9 +133,13 @@
                         <page string="Servicio">
                             <group col="4">
                                 <field name="hora_entrada_real"/>
-                                <field name="hora_salida_real"/>
+                                <field name="hora_entrada_real_fecha" readonly="1"/>
                                 <field name="hora_inicio_faena"/>
+                                <field name="hora_inicio_faena_fecha" readonly="1"/>
                                 <field name="hora_fin_faena"/>
+                                <field name="hora_fin_faena_fecha" readonly="1"/>
+                                <field name="hora_salida_real"/>
+                                <field name="hora_salida_real_fecha" readonly="1"/>
                                 <field name="area_id"/>
                                 <field name="nombre_equipo"/>
                                 <field name="tag"/>
