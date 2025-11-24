@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from odoo import api, fields, models, _
+from datetime import timedelta
+
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 @api.model
@@ -124,9 +126,33 @@ class ITInforme(models.Model):
     establecimiento_id = fields.Many2one("res.partner", string="Establecimiento", domain="[('parent_id','!=',False)]", required=True, tracking=True)
 
     hora_entrada_real = fields.Selection(selection=_quarter_hour_selection,string="Hora entrada real",required=True)
-    hora_salida_real = fields.Selection(selection=_quarter_hour_selection,string="Hora salida real",required=True)
+    hora_entrada_real_fecha = fields.Date(
+        string="Fecha hora entrada real",
+        compute="_compute_time_dates",
+        store=True,
+        readonly=True,
+    )
     hora_inicio_faena = fields.Selection(selection=_quarter_hour_selection,string="Hora inicio faenal",required=True)
+    hora_inicio_faena_fecha = fields.Date(
+        string="Fecha hora inicio faena",
+        compute="_compute_time_dates",
+        store=True,
+        readonly=True,
+    )
     hora_fin_faena = fields.Selection(selection=_quarter_hour_selection,string="Hora fin faena", required=True)
+    hora_fin_faena_fecha = fields.Date(
+        string="Fecha hora fin faena",
+        compute="_compute_time_dates",
+        store=True,
+        readonly=True,
+    )
+    hora_salida_real = fields.Selection(selection=_quarter_hour_selection,string="Hora salida real",required=True)
+    hora_salida_real_fecha = fields.Date(
+        string="Fecha hora salida real",
+        compute="_compute_time_dates",
+        store=True,
+        readonly=True,
+    )
 
     descripcion = fields.Text("Descripción", required=True)
     area_id = fields.Many2one("it.area", string="Área", required=True)
@@ -223,6 +249,38 @@ class ITInforme(models.Model):
             rec.camioneta_count = len(rec.camioneta_line_ids)
             rec.camion_count = len(rec.camion_line_ids)
             rec.bomba_count = len(rec.bomba_line_ids)
+
+
+    @api.depends(
+        "fecha_ejecucion",
+        "hora_entrada_real",
+        "hora_inicio_faena",
+        "hora_fin_faena",
+        "hora_salida_real",
+    )
+    def _compute_time_dates(self):
+        def _to_minutes(val):
+            if not val:
+                return None
+            h, m = map(int, val.split(":"))
+            return h * 60 + m
+
+        for rec in self:
+            base_date = rec.fecha_ejecucion or fields.Date.context_today(rec)
+            prev_date = base_date
+            prev_time = _to_minutes(rec.hora_entrada_real)
+            rec.hora_entrada_real_fecha = prev_date
+
+            for field_name, time_value in [
+                ("hora_inicio_faena_fecha", rec.hora_inicio_faena),
+                ("hora_fin_faena_fecha", rec.hora_fin_faena),
+                ("hora_salida_real_fecha", rec.hora_salida_real),
+            ]:
+                current_time = _to_minutes(time_value)
+                if None not in (prev_time, current_time) and current_time < prev_time:
+                    prev_date = prev_date + timedelta(days=1)
+                setattr(rec, field_name, prev_date)
+                prev_time = current_time if current_time is not None else prev_time
 
 
     @api.constrains("hora_entrada_real", "hora_salida_real", "hora_inicio_faena", "hora_fin_faena")
