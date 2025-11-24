@@ -163,14 +163,32 @@
                         <!-- Página Servicio -->
                         <page string="Servicio">
                             <group col="4">
-                                <field name="hora_entrada_real"/>
-                                <field name="hora_entrada_real_fecha" readonly="1"/>
-                                <field name="hora_inicio_faena"/>
-                                <field name="hora_inicio_faena_fecha" readonly="1"/>
-                                <field name="hora_fin_faena"/>
-                                <field name="hora_fin_faena_fecha" readonly="1"/>
-                                <field name="hora_salida_real"/>
-                                <field name="hora_salida_real_fecha" readonly="1"/>
+                                <group colspan="4">
+                                    <div class="o_row o_group">
+                                        <label for="hora_entrada_real"/>
+                                        <field name="hora_entrada_real" class="oe_inline"/>
+                                        <span class="o_form_label"> - </span>
+                                        <field name="hora_entrada_real_fecha" readonly="1" nolabel="1" class="oe_inline"/>
+                                    </div>
+                                    <div class="o_row o_group">
+                                        <label for="hora_inicio_faena"/>
+                                        <field name="hora_inicio_faena" class="oe_inline"/>
+                                        <span class="o_form_label"> - </span>
+                                        <field name="hora_inicio_faena_fecha" readonly="1" nolabel="1" class="oe_inline"/>
+                                    </div>
+                                    <div class="o_row o_group">
+                                        <label for="hora_fin_faena"/>
+                                        <field name="hora_fin_faena" class="oe_inline"/>
+                                        <span class="o_form_label"> - </span>
+                                        <field name="hora_fin_faena_fecha" readonly="1" nolabel="1" class="oe_inline"/>
+                                    </div>
+                                    <div class="o_row o_group">
+                                        <label for="hora_salida_real"/>
+                                        <field name="hora_salida_real" class="oe_inline"/>
+                                        <span class="o_form_label"> - </span>
+                                        <field name="hora_salida_real_fecha" readonly="1" nolabel="1" class="oe_inline"/>
+                                    </div>
+                                </group>
                                 <field name="area_id"/>
                                 <field name="nombre_equipo"/>
                                 <field name="tag"/>
