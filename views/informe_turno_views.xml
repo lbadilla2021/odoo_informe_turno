@@ -162,39 +162,41 @@
 
                         <!-- Página Servicio -->
                         <page string="Servicio">
-                            <group col="4">
-                                <group colspan="4">
-                                    <div class="o_row o_group">
-                                        <label for="hora_entrada_real"/>
+                            <group col="2">
+                                <group col="1" class="it_time_group">
+                                    <div class="it_time_row">
+                                        <label for="hora_entrada_real" class="it_time_label"/>
                                         <field name="hora_entrada_real" class="oe_inline"/>
-                                        <span class="o_form_label"> - </span>
+                                        <span class="o_form_label it_time_separator"> - </span>
                                         <field name="hora_entrada_real_fecha" readonly="1" nolabel="1" class="oe_inline"/>
                                     </div>
-                                    <div class="o_row o_group">
-                                        <label for="hora_inicio_faena"/>
+                                    <div class="it_time_row">
+                                        <label for="hora_inicio_faena" class="it_time_label"/>
                                         <field name="hora_inicio_faena" class="oe_inline"/>
-                                        <span class="o_form_label"> - </span>
+                                        <span class="o_form_label it_time_separator"> - </span>
                                         <field name="hora_inicio_faena_fecha" readonly="1" nolabel="1" class="oe_inline"/>
                                     </div>
-                                    <div class="o_row o_group">
-                                        <label for="hora_fin_faena"/>
+                                    <div class="it_time_row">
+                                        <label for="hora_fin_faena" class="it_time_label"/>
                                         <field name="hora_fin_faena" class="oe_inline"/>
-                                        <span class="o_form_label"> - </span>
+                                        <span class="o_form_label it_time_separator"> - </span>
                                         <field name="hora_fin_faena_fecha" readonly="1" nolabel="1" class="oe_inline"/>
                                     </div>
-                                    <div class="o_row o_group">
-                                        <label for="hora_salida_real"/>
+                                    <div class="it_time_row">
+                                        <label for="hora_salida_real" class="it_time_label"/>
                                         <field name="hora_salida_real" class="oe_inline"/>
-                                        <span class="o_form_label"> - </span>
+                                        <span class="o_form_label it_time_separator"> - </span>
                                         <field name="hora_salida_real_fecha" readonly="1" nolabel="1" class="oe_inline"/>
                                     </div>
                                 </group>
-                                <field name="area_id"/>
-                                <field name="nombre_equipo"/>
-                                <field name="tag"/>
-                                <field name="tipo_trabajo_id"/>
-                                <field name="especialidad_id"/>
-                                <field name="pedido_os"/>
+                                <group col="2">
+                                    <field name="area_id"/>
+                                    <field name="nombre_equipo"/>
+                                    <field name="tag"/>
+                                    <field name="tipo_trabajo_id"/>
+                                    <field name="especialidad_id"/>
+                                    <field name="pedido_os"/>
+                                </group>
                             </group>
                             <group>
                                 <field name="descripcion"/>
