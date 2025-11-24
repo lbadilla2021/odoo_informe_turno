@@ -39,6 +39,14 @@ class ITEspecialidad(models.Model):
     active = fields.Boolean(default=True)
 
 
+class ITTipoVehiculo(models.Model):
+    _name = "it.tipo.vehiculo"
+    _description = "Tipo de vehículo"
+
+    name = fields.Char("Nombre", required=True)
+    active = fields.Boolean(default=True)
+
+
 class ITInformeFotoPair(models.Model):
     _name = "it.informe.foto.pair"
     _description = "Par de fotos Antes/Después por sección"
@@ -52,31 +60,18 @@ class ITInformeFotoPair(models.Model):
     foto_despues = fields.Image("Foto Después", required=True, max_width=1920, max_height=1920)
 
 
-class ITInformeCamioneta(models.Model):
-    _name = "it.informe.camioneta"
-    _description = "Camioneta asociada al informe"
+class ITInformeVehiculo(models.Model):
+    _name = "it.informe.vehiculo"
+    _description = "Vehículo asociado al informe"
 
     informe_id = fields.Many2one("it.informe", required=True, ondelete="cascade")
-    camioneta_id = fields.Many2one("fleet.vehicle", string="Camioneta", required=True)
-    kilometraje = fields.Integer("Kilometraje", required=True)
-
-
-class ITInformeCamion(models.Model):
-    _name = "it.informe.camion"
-    _description = "Camión asociado al informe"
-
-    informe_id = fields.Many2one("it.informe", required=True, ondelete="cascade")
-    camion_id = fields.Many2one("fleet.vehicle", string="Camión", required=True)
-    kilometraje = fields.Integer("Kilometraje", required=True)
-
-
-class ITInformeBomba(models.Model):
-    _name = "it.informe.bomba"
-    _description = "Bomba asociada al informe"
-
-    informe_id = fields.Many2one("it.informe", required=True, ondelete="cascade")
-    bomba_id = fields.Many2one("fleet.vehicle", string="Bomba", required=True)
-    horometro = fields.Integer("Horómetro", required=True)
+    tipo_vehiculo_id = fields.Many2one(
+        "it.tipo.vehiculo", string="Tipo de vehículo", required=True
+    )
+    vehiculo_id = fields.Many2one(
+        "fleet.vehicle", string="Vehículo", required=True
+    )
+    medida = fields.Integer("Kms/Horas", required=True)
 
 
 class ITInforme(models.Model):
@@ -192,19 +187,11 @@ class ITInforme(models.Model):
         domain="[('category_ids.name', '=', 'Operadores de Servicios')]"
     )
 
-    camioneta_line_ids = fields.One2many(
-        "it.informe.camioneta", "informe_id", string="Camionetas", required=True
-    )
-    camion_line_ids = fields.One2many(
-        "it.informe.camion", "informe_id", string="Camiones", required=True
-    )
-    bomba_line_ids = fields.One2many(
-        "it.informe.bomba", "informe_id", string="Bombas", required=True
+    vehiculo_line_ids = fields.One2many(
+        "it.informe.vehiculo", "informe_id", string="Vehículos", required=True
     )
 
-    camioneta_count = fields.Integer("Camionetas", compute="_compute_resource_counts")
-    camion_count = fields.Integer("Camiones", compute="_compute_resource_counts")
-    bomba_count = fields.Integer("Bombas", compute="_compute_resource_counts")
+    vehiculo_count = fields.Integer("Vehículos", compute="_compute_resource_counts")
 
     alojamiento = fields.Boolean("Alojamiento", default=False)
     cant_personas = fields.Integer("Cantidad de personas", required=True)
@@ -243,12 +230,10 @@ class ITInforme(models.Model):
             vals.pop("supervisor_id", None)
         return super().write(vals)
 
-    @api.depends("camioneta_line_ids", "camion_line_ids", "bomba_line_ids")
+    @api.depends("vehiculo_line_ids")
     def _compute_resource_counts(self):
         for rec in self:
-            rec.camioneta_count = len(rec.camioneta_line_ids)
-            rec.camion_count = len(rec.camion_line_ids)
-            rec.bomba_count = len(rec.bomba_line_ids)
+            rec.vehiculo_count = len(rec.vehiculo_line_ids)
 
 
     @api.depends(

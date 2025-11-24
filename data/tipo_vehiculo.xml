@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="it_tipo_vehiculo_camion" model="it.tipo.vehiculo">
+        <field name="name">Camión</field>
+    </record>
+    <record id="it_tipo_vehiculo_camioneta" model="it.tipo.vehiculo">
+        <field name="name">Camioneta</field>
+    </record>
+    <record id="it_tipo_vehiculo_bomba" model="it.tipo.vehiculo">
+        <field name="name">Bomba</field>
+    </record>
+</odoo>
