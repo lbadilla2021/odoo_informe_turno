@@ -162,7 +162,7 @@
 
                         <!-- Página Servicio -->
                         <page string="Servicio">
-                            <group col="2">
+                            <group>
                                 <group col="1" class="it_time_group">
                                     <div class="it_time_row">
                                         <label for="hora_entrada_real" class="it_time_label"/>
@@ -189,16 +189,16 @@
                                         <field name="hora_salida_real_fecha" readonly="1" nolabel="1" class="oe_inline"/>
                                     </div>
                                 </group>
-                                <group col="2">
-                                    <field name="area_id"/>
-                                    <field name="nombre_equipo"/>
-                                    <field name="tag"/>
-                                    <field name="tipo_trabajo_id"/>
-                                    <field name="especialidad_id"/>
-                                    <field name="pedido_os"/>
-                                </group>
                             </group>
-                            <group>
+                            <group col="2" class="it_service_details">
+                                <field name="area_id"/>
+                                <field name="nombre_equipo"/>
+                                <field name="tag"/>
+                                <field name="tipo_trabajo_id"/>
+                                <field name="especialidad_id"/>
+                                <field name="pedido_os"/>
+                            </group>
+                            <group col="2">
                                 <field name="descripcion"/>
                                 <field name="observaciones_servicio"/>
                             </group>
