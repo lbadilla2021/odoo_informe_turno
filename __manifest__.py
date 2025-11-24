@@ -15,6 +15,11 @@
         "fleet",
         "contacts",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "odoo_informe_turno/static/src/css/informe_turno.css",
+        ],
+    },
     "data": [
         "data/sequence.xml",
         "data/hr_tags.xml",
