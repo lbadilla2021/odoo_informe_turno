@@ -38,6 +38,31 @@
         <field name="res_model">it.tipo.servicio</field>
         <field name="view_mode">tree,form</field>
     </record>
+    <record id="view_it_tipo_servicio_tree" model="ir.ui.view">
+        <field name="name">it.tipo.servicio.tree</field>
+        <field name="model">it.tipo.servicio</field>
+        <field name="arch" type="xml">
+            <tree string="Tipos de servicio">
+                <field name="name"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_it_tipo_servicio_form" model="ir.ui.view">
+        <field name="name">it.tipo.servicio.form</field>
+        <field name="model">it.tipo.servicio</field>
+        <field name="arch" type="xml">
+            <form string="Tipo de servicio">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
     <menuitem id="menu_it_tipo_servicio" name="Tipos de servicio" parent="menu_it_tablas" action="action_it_tipo_servicio" sequence="25"/>
 
     <record id="action_it_especialidad" model="ir.actions.act_window">
@@ -168,7 +193,6 @@
                 <field name="establecimiento_id" optional="show"/>
                 <field name="area_id" optional="show"/>
                 <field name="tipo_trabajo_id" optional="show"/>
-                <field name="tipo_servicio_id" optional="show"/>
                 <field name="supervisor_id" optional="show"/>
                 <field name="hora_entrada_real" optional="show"/>
                 <field name="hora_entrada_real_fecha" optional="show"/>
@@ -228,7 +252,6 @@
                                 <field name="nombre_equipo"/>
                                 <field name="tag"/>
                                 <field name="tipo_trabajo_id"/>
-                                <field name="tipo_servicio_id"/>
                                 <field name="especialidad_id"/>
                                 <field name="pedido_os"/>
                             </group>
@@ -256,6 +279,7 @@
                                         <field name="tipo_vehiculo_id"/>
                                         <field name="vehiculo_id"/>
                                         <field name="medida"/>
+                                        <field name="lts_petroline"/>
                                     </tree>
                                 </field>
                             </group>
@@ -285,7 +309,6 @@
                                 <field name="foto_pair_ids" context="{'default_informe_id':active_id}">
                                     <tree editable="bottom">
                                         <field name="sequence" widget="handle"/>
-                                        <field name="seccion"/>
                                         <field name="etiqueta"/>
                                         <field name="foto_antes" widget="image"/>
                                         <field name="foto_despues" widget="image"/>
