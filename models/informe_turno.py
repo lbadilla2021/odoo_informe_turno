@@ -31,6 +31,14 @@ class ITTipoTrabajo(models.Model):
     active = fields.Boolean(default=True)
 
 
+class ITTipoServicio(models.Model):
+    _name = "it.tipo.servicio"
+    _description = "Tipo de Servicio"
+
+    name = fields.Char("Nombre", required=True)
+    active = fields.Boolean(default=True)
+
+
 class ITEspecialidad(models.Model):
     _name = "it.especialidad"
     _description = "Especialidad"
@@ -154,6 +162,7 @@ class ITInforme(models.Model):
     nombre_equipo = fields.Char("Nombre Equipo", required=True)
     tag = fields.Char("TAG", required=True)
     tipo_trabajo_id = fields.Many2one("it.tipo.trabajo", string="Tipo de trabajo", required=True)
+    tipo_servicio_id = fields.Many2one("it.tipo.servicio", string="Tipo de servicio", required=True)
     especialidad_id = fields.Many2one("it.especialidad", string="Especialidad", required=True)
     pedido_os = fields.Char("Pedido OS")
     observaciones_servicio = fields.Text("Observaciones del servicio")
