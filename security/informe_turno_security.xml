@@ -10,7 +10,8 @@
     </record>
     <record id="group_it_usuario_comercial" model="res.groups">
         <field name="name">Usuario Comercial</field>
-        <field name="category_id" ref="base.module_category_sales_management"/>
+        <field name="category_id" ref="base.module_category_technical"/>
+
     </record>
     <record id="rule_it_read_all" model="ir.rule">
         <field name="name">it.informe - read all</field>
