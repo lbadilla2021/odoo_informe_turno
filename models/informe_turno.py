@@ -57,12 +57,11 @@ class ITTipoVehiculo(models.Model):
 
 class ITInformeFotoPair(models.Model):
     _name = "it.informe.foto.pair"
-    _description = "Par de fotos Antes/Después por sección"
+    _description = "Par de fotos Antes/Después"
     _order = "sequence, id"
 
     informe_id = fields.Many2one("it.informe", required=True, ondelete="cascade")
     sequence = fields.Integer(default=10)
-    seccion = fields.Char("Sección", required=True)
     etiqueta = fields.Char("Etiqueta")
     foto_antes = fields.Image("Foto Antes", required=True, max_width=1920, max_height=1920)
     foto_despues = fields.Image("Foto Después", required=True, max_width=1920, max_height=1920)
@@ -80,6 +79,7 @@ class ITInformeVehiculo(models.Model):
         "fleet.vehicle", string="Vehículo", required=True
     )
     medida = fields.Integer("Kms/Horas", required=True)
+    lts_petroline = fields.Float("Lts Petroline", digits=(16, 2))
 
 
 class ITInforme(models.Model):
@@ -162,7 +162,6 @@ class ITInforme(models.Model):
     nombre_equipo = fields.Char("Nombre Equipo", required=True)
     tag = fields.Char("TAG", required=True)
     tipo_trabajo_id = fields.Many2one("it.tipo.trabajo", string="Tipo de trabajo", required=True)
-    tipo_servicio_id = fields.Many2one("it.tipo.servicio", string="Tipo de servicio", required=True)
     especialidad_id = fields.Many2one("it.especialidad", string="Especialidad", required=True)
     pedido_os = fields.Char("Pedido OS")
     observaciones_servicio = fields.Text("Observaciones del servicio")
