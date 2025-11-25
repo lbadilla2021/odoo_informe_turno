@@ -18,3 +18,4 @@ access_it_informe_vehiculo_read,it.informe.vehiculo read,model_it_informe_vehicu
 access_it_informe_vehiculo_admin,it.informe.vehiculo admin,model_it_informe_vehiculo,base.group_system,1,1,1,1
 access_res_partner_it_user,res.partner it user,base.model_res_partner,informe_turno.group_it_own,1,1,1,1
 access_res_partner_it_read,res.partner it read,base.model_res_partner,informe_turno.group_it_read_all,1,0,0,0
+access_it_orden_servicio_user,it.orden.servicio user,model_it_orden_servicio,informe_turno.group_it_usuario_comercial,1,1,1,1

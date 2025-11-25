@@ -28,6 +28,8 @@
         "data/clientes_establecimientos.xml",
         "security/informe_turno_security.xml",
         "security/ir.model.access.csv",
+        "views/it_orden_servicio_views.xml",
+        "menu/menu_comercial.xml",
         "views/informe_turno_views.xml",
     ],
     "application": True,
