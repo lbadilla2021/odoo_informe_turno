@@ -4,8 +4,23 @@ access_it_informe_read,it.informe read,model_it_informe,informe_turno.group_it_r
 access_it_informe_admin,it.informe admin,model_it_informe,base.group_system,1,1,1,1
 access_it_foto_pair_user,it.foto.pair user,model_it_informe_foto_pair,informe_turno.group_it_own,1,1,1,1
 access_it_foto_pair_admin,it.foto.pair admin,model_it_informe_foto_pair,base.group_system,1,1,1,1
+
+# --- AREAS ---
 access_it_area_admin,it.area admin,model_it_area,base.group_system,1,1,1,1
+
+# --- TIPO TRABAJO ---
 access_it_tipo_admin,it.tipo admin,model_it_tipo_trabajo,base.group_system,1,1,1,1
+
+# --- ESPECIALIDAD ---
 access_it_especialidad_admin,it.especialidad admin,model_it_especialidad,base.group_system,1,1,1,1
+
+# --- TIPO VEHICULO ---
+access_it_tipo_vehiculo_user,it.tipo.vehiculo user,model_it_tipo_vehiculo,informe_turno.group_it_own,1,1,1,1
+access_it_tipo_vehiculo_read,it.tipo.vehiculo read,model_it_tipo_vehiculo,informe_turno.group_it_read_all,1,0,0,0
+access_it_tipo_vehiculo_admin,it.tipo.vehiculo admin,model_it_tipo_vehiculo,base.group_system,1,1,1,1
+
+# --- PARTNERS (CLIENTES Y ESTABLECIMIENTOS) ---
+access_res_partner_it_user,res.partner it user,base.model_res_partner,informe_turno.group_it_own,1,1,1,1
+access_res_partner_it_read,res.partner it read,base.model_res_partner,informe_turno.group_it_read_all,1,0,0,0
 
 

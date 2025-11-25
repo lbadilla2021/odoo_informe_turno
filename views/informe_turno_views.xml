@@ -33,6 +33,13 @@
     </record>
     <menuitem id="menu_it_tipo_trabajo" name="Tipos de trabajo" parent="menu_it_tablas" action="action_it_tipo_trabajo" sequence="20"/>
 
+    <record id="action_it_tipo_servicio" model="ir.actions.act_window">
+        <field name="name">Tipos de servicio</field>
+        <field name="res_model">it.tipo.servicio</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_it_tipo_servicio" name="Tipos de servicio" parent="menu_it_tablas" action="action_it_tipo_servicio" sequence="25"/>
+
     <record id="action_it_especialidad" model="ir.actions.act_window">
         <field name="name">Especialidades</field>
         <field name="res_model">it.especialidad</field>
@@ -72,6 +79,52 @@
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem id="menu_it_tipo_vehiculo" name="Tipos de vehículo" parent="menu_it_tablas" action="action_it_tipo_vehiculo" sequence="40"/>
+
+    <record id="view_it_clientes_tree" model="ir.ui.view">
+        <field name="name">res.partner.it.clientes.tree</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree string="Clientes">
+                <field name="name"/>
+                <field name="country_id" optional="hide"/>
+                <field name="email" optional="hide"/>
+                <field name="phone" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_it_clientes" model="ir.actions.act_window">
+        <field name="name">Clientes</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_it_clientes_tree"/>
+        <field name="domain">[("parent_id", "=", False), ("is_company", "=", True)]</field>
+        <field name="context">{"default_is_company": True, "default_company_type": "company"}</field>
+    </record>
+    <menuitem id="menu_it_clientes" name="Clientes" parent="menu_it_tablas" action="action_it_clientes" sequence="45"/>
+
+    <record id="view_it_establecimientos_tree" model="ir.ui.view">
+        <field name="name">res.partner.it.establecimientos.tree</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree string="Establecimientos">
+                <field name="name"/>
+                <field name="parent_id" string="Cliente"/>
+                <field name="city" optional="hide"/>
+                <field name="phone" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_it_establecimientos" model="ir.actions.act_window">
+        <field name="name">Establecimientos</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_it_establecimientos_tree"/>
+        <field name="domain">[("parent_id", "!=", False)]</field>
+        <field name="context">{"default_parent_id": False, "default_company_type": "company"}</field>
+    </record>
+    <menuitem id="menu_it_establecimientos" name="Establecimientos" parent="menu_it_tablas" action="action_it_establecimientos" sequence="50"/>
 
     <!-- Empleados solo lectura -->
     <record id="view_hr_employee_tree_readonly" model="ir.ui.view">
@@ -115,6 +168,7 @@
                 <field name="establecimiento_id" optional="show"/>
                 <field name="area_id" optional="show"/>
                 <field name="tipo_trabajo_id" optional="show"/>
+                <field name="tipo_servicio_id" optional="show"/>
                 <field name="supervisor_id" optional="show"/>
                 <field name="hora_entrada_real" optional="show"/>
                 <field name="hora_entrada_real_fecha" optional="show"/>
@@ -174,6 +228,7 @@
                                 <field name="nombre_equipo"/>
                                 <field name="tag"/>
                                 <field name="tipo_trabajo_id"/>
+                                <field name="tipo_servicio_id"/>
                                 <field name="especialidad_id"/>
                                 <field name="pedido_os"/>
                             </group>
