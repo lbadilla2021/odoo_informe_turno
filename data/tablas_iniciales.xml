@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+    <!-- Tipos de servicio -->
+    <record id="it_tipo_servicio_limpieza_aap" model="it.tipo.servicio">
+        <field name="name">Limpieza Aap</field>
+    </record>
+    <record id="it_tipo_servicio_limpieza_aav" model="it.tipo.servicio">
+        <field name="name">Limpieza Aav</field>
+    </record>
+    <record id="it_tipo_servicio_pruebas_hidraulicas" model="it.tipo.servicio">
+        <field name="name">Pruebas Hidraulicas</field>
+    </record>
+    <record id="it_tipo_servicio_inspecciones" model="it.tipo.servicio">
+        <field name="name">Inspecciones</field>
+    </record>
+    <record id="it_tipo_servicio_limpieza_hidrolavadora" model="it.tipo.servicio">
+        <field name="name">Limpieza Hidrolavadora</field>
+    </record>
+
+    <!-- Especialidades -->
+    <record id="it_especialidad_ap" model="it.especialidad">
+        <field name="name">AP</field>
+    </record>
+    <record id="it_especialidad_av" model="it.especialidad">
+        <field name="name">AV</field>
+    </record>
+    <record id="it_especialidad_ap_av" model="it.especialidad">
+        <field name="name">AP+AV</field>
+    </record>
+    <record id="it_especialidad_pluma" model="it.especialidad">
+        <field name="name">PLUMA</field>
+    </record>
+    <record id="it_especialidad_mecanica" model="it.especialidad">
+        <field name="name">MECANICA</field>
+    </record>
+    <record id="it_especialidad_ph" model="it.especialidad">
+        <field name="name">PH</field>
+    </record>
+    <record id="it_especialidad_hidrolavado" model="it.especialidad">
+        <field name="name">HIDROLAVADO</field>
+    </record>
+
+    <!-- Tipos de trabajo -->
+    <record id="it_tipo_trabajo_pgp" model="it.tipo.trabajo">
+        <field name="name">PGP</field>
+    </record>
+    <record id="it_tipo_trabajo_rutinario" model="it.tipo.trabajo">
+        <field name="name">Rutinario</field>
+    </record>
+    <record id="it_tipo_trabajo_spot" model="it.tipo.trabajo">
+        <field name="name">Spot</field>
+    </record>
+
+    <!-- Áreas -->
+    <record id="it_area_digestor" model="it.area">
+        <field name="name">Digestor</field>
+    </record>
+    <record id="it_area_blanqueo" model="it.area">
+        <field name="name">Blanqueo</field>
+    </record>
+    <record id="it_area_evaporadores" model="it.area">
+        <field name="name">Evaporadores</field>
+    </record>
+    <record id="it_area_secado" model="it.area">
+        <field name="name">Secado</field>
+    </record>
+    <record id="it_area_caldera_poder" model="it.area">
+        <field name="name">Caldera Poder</field>
+    </record>
+    <record id="it_area_caldera_biomasa" model="it.area">
+        <field name="name">Caldera biomasa</field>
+    </record>
+    <record id="it_area_planta_agua" model="it.area">
+        <field name="name">Planta Agua</field>
+    </record>
+</odoo>
