@@ -127,6 +127,12 @@ class ITInforme(models.Model):
     supervisor_id = fields.Many2one("res.users", string="Supervisor", default=lambda self: self.env.user, required=True, tracking=True)
     fecha_ejecucion = fields.Date("Fecha de ejecución", default=fields.Date.context_today, required=True, tracking=True)
     establecimiento_id = fields.Many2one("res.partner", string="Establecimiento", domain="[('parent_id','!=',False)]", required=True, tracking=True)
+    orden_servicio_id = fields.Many2one(
+        "it.orden.servicio",
+        string="Orden de Servicio",
+        domain="[('estado', '=', 'adjudicado'), ('establecimiento_id', '=', establecimiento_id)]",
+        required=False,
+    )
 
     hora_entrada_real = fields.Selection(selection=_quarter_hour_selection,string="Hora entrada real",required=True)
     hora_entrada_real_fecha = fields.Date(

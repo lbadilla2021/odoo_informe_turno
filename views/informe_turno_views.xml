@@ -233,6 +233,7 @@
                         <field name="code" modifiers="{'readonly':[('id','!=',False)]}"/>
                         <field name="fecha_ejecucion"/>
                         <field name="establecimiento_id" options="{'no_create_edit':True}"/>
+                        <field name="orden_servicio_id" options="{'no_create': True}"/>
                         <field name="supervisor_id" readonly="1"/>
                     </group>
 

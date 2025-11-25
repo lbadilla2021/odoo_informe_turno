@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_it_comercial" name="Comercial" parent="menu_it_root" sequence="40"/>
+    <menuitem
+        id="menu_it_orden_servicio"
+        name="Órdenes de Servicio"
+        parent="menu_it_comercial"
+        action="action_it_orden_servicio"
+        sequence="10"
+    />
+</odoo>
