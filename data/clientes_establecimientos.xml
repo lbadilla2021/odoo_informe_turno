@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+    <!-- Clientes -->
+    <record id="res_partner_cliente_arauco" model="res.partner">
+        <field name="name">Arauco</field>
+        <field name="is_company">True</field>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_cliente_cmpc" model="res.partner">
+        <field name="name">CMPC</field>
+        <field name="is_company">True</field>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_cliente_colbun" model="res.partner">
+        <field name="name">Colbun</field>
+        <field name="is_company">True</field>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_cliente_iansa" model="res.partner">
+        <field name="name">Iansa</field>
+        <field name="is_company">True</field>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_cliente_lumina" model="res.partner">
+        <field name="name">Lumina Copper</field>
+        <field name="is_company">True</field>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_cliente_masisa" model="res.partner">
+        <field name="name">Masisa</field>
+        <field name="is_company">True</field>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_cliente_oxiquim" model="res.partner">
+        <field name="name">Oxiquim</field>
+        <field name="is_company">True</field>
+        <field name="company_type">company</field>
+    </record>
+
+    <!-- Establecimientos -->
+    <record id="res_partner_establecimiento_nueva_aldea" model="res.partner">
+        <field name="name">Nueva Aldea</field>
+        <field name="parent_id" ref="res_partner_cliente_arauco"/>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_establecimiento_horcones" model="res.partner">
+        <field name="name">Horcones</field>
+        <field name="parent_id" ref="res_partner_cliente_arauco"/>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_establecimiento_valdivia" model="res.partner">
+        <field name="name">Valdivia</field>
+        <field name="parent_id" ref="res_partner_cliente_arauco"/>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_establecimiento_teno" model="res.partner">
+        <field name="name">Teno</field>
+        <field name="parent_id" ref="res_partner_cliente_arauco"/>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_establecimiento_licancel" model="res.partner">
+        <field name="name">Licancel</field>
+        <field name="parent_id" ref="res_partner_cliente_arauco"/>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_establecimiento_plywood" model="res.partner">
+        <field name="name">Plywood</field>
+        <field name="parent_id" ref="res_partner_cliente_cmpc"/>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_establecimiento_santa_fe" model="res.partner">
+        <field name="name">Santa Fe</field>
+        <field name="parent_id" ref="res_partner_cliente_cmpc"/>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_establecimiento_bucalemu" model="res.partner">
+        <field name="name">Bucalemu</field>
+        <field name="parent_id" ref="res_partner_cliente_cmpc"/>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_establecimiento_laja" model="res.partner">
+        <field name="name">Laja</field>
+        <field name="parent_id" ref="res_partner_cliente_cmpc"/>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_establecimiento_cmpc_pacifico" model="res.partner">
+        <field name="name">Cmpc - Pacifico</field>
+        <field name="parent_id" ref="res_partner_cliente_cmpc"/>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_establecimiento_colbun" model="res.partner">
+        <field name="name">Colbun</field>
+        <field name="parent_id" ref="res_partner_cliente_colbun"/>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_establecimiento_iansa_san_carlos" model="res.partner">
+        <field name="name">Iansa - San Carlos</field>
+        <field name="parent_id" ref="res_partner_cliente_iansa"/>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_establecimiento_lumina_copper" model="res.partner">
+        <field name="name">Lumina Copper</field>
+        <field name="parent_id" ref="res_partner_cliente_lumina"/>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_establecimiento_masisa_mapal" model="res.partner">
+        <field name="name">Masisa Mapal</field>
+        <field name="parent_id" ref="res_partner_cliente_masisa"/>
+        <field name="company_type">company</field>
+    </record>
+    <record id="res_partner_establecimiento_oxiquim" model="res.partner">
+        <field name="name">Oxiquim</field>
+        <field name="parent_id" ref="res_partner_cliente_oxiquim"/>
+        <field name="company_type">company</field>
+    </record>
+</odoo>
