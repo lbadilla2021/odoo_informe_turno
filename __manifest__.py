@@ -23,7 +23,9 @@
     "data": [
         "data/sequence.xml",
         "data/hr_tags.xml",
+        "data/tablas_iniciales.xml",
         "data/tipo_vehiculo.xml",
+        "data/clientes_establecimientos.xml",
         "security/informe_turno_security.xml",
         "security/ir.model.access.csv",
         "views/informe_turno_views.xml",
