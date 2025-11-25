@@ -17,7 +17,7 @@
     ],
     "assets": {
         "web.assets_backend": [
-            "odoo_informe_turno/static/src/scss/informe_turno.scss",
+            "informe_turno/static/src/scss/informe_turno.scss",
         ],
     },
     "data": [

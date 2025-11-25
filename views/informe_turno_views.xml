@@ -159,38 +159,17 @@
                     </group>
 
                     <notebook>
-
                         <!-- Página Servicio -->
                         <page string="Servicio">
-                            <group>
-                                <group col="1" class="it_time_group">
-                                    <div class="it_time_row">
-                                        <label for="hora_entrada_real" class="it_time_label"/>
-                                        <field name="hora_entrada_real" class="oe_inline"/>
-                                        <span class="o_form_label it_time_separator"> - </span>
-                                        <field name="hora_entrada_real_fecha" readonly="1" nolabel="1" class="oe_inline"/>
-                                    </div>
-                                    <div class="it_time_row">
-                                        <label for="hora_inicio_faena" class="it_time_label"/>
-                                        <field name="hora_inicio_faena" class="oe_inline"/>
-                                        <span class="o_form_label it_time_separator"> - </span>
-                                        <field name="hora_inicio_faena_fecha" readonly="1" nolabel="1" class="oe_inline"/>
-                                    </div>
-                                    <div class="it_time_row">
-                                        <label for="hora_fin_faena" class="it_time_label"/>
-                                        <field name="hora_fin_faena" class="oe_inline"/>
-                                        <span class="o_form_label it_time_separator"> - </span>
-                                        <field name="hora_fin_faena_fecha" readonly="1" nolabel="1" class="oe_inline"/>
-                                    </div>
-                                    <div class="it_time_row">
-                                        <label for="hora_salida_real" class="it_time_label"/>
-                                        <field name="hora_salida_real" class="oe_inline"/>
-                                        <span class="o_form_label it_time_separator"> - </span>
-                                        <field name="hora_salida_real_fecha" readonly="1" nolabel="1" class="oe_inline"/>
-                                    </div>
-                                </group>
-                            </group>
-                            <group col="2" class="it_service_details">
+                            <group col="4">
+                                <field name="hora_entrada_real"/>
+                                <field name="hora_entrada_real_fecha" readonly="1"/>
+                                <field name="hora_inicio_faena"/>
+                                <field name="hora_inicio_faena_fecha" readonly="1"/>
+                                <field name="hora_fin_faena"/>
+                                <field name="hora_fin_faena_fecha" readonly="1"/>
+                                <field name="hora_salida_real"/>
+                                <field name="hora_salida_real_fecha" readonly="1"/>
                                 <field name="area_id"/>
                                 <field name="nombre_equipo"/>
                                 <field name="tag"/>

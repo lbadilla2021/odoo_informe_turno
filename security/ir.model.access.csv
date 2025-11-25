@@ -1,12 +1,24 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+# --- INFORME TURNO ---
 access_it_informe_user,it.informe user,model_it_informe,informe_turno.group_it_own,1,1,1,1
 access_it_informe_read,it.informe read,model_it_informe,informe_turno.group_it_read_all,1,0,0,0
 access_it_informe_admin,it.informe admin,model_it_informe,base.group_system,1,1,1,1
+
+# --- FOTO PAIR ---
 access_it_foto_pair_user,it.foto.pair user,model_it_informe_foto_pair,informe_turno.group_it_own,1,1,1,1
 access_it_foto_pair_admin,it.foto.pair admin,model_it_informe_foto_pair,base.group_system,1,1,1,1
+
+# --- AREAS ---
 access_it_area_admin,it.area admin,model_it_area,base.group_system,1,1,1,1
+
+# --- TIPO TRABAJO ---
 access_it_tipo_admin,it.tipo admin,model_it_tipo_trabajo,base.group_system,1,1,1,1
+
+# --- ESPECIALIDAD ---
 access_it_especialidad_admin,it.especialidad admin,model_it_especialidad,base.group_system,1,1,1,1
-access_it_vehiculo_user,it.informe.vehiculo user,model_it_informe_vehiculo,informe_turno.group_it_own,1,1,1,1
-access_it_vehiculo_admin,it.informe.vehiculo admin,model_it_informe_vehiculo,base.group_system,1,1,1,1
-access_it_tipo_vehiculo_admin,it.tipo.vehiculo admin,model_it_tipo_vehiculo,base.group_system,1,1,1,1
+
+# --- HR EMPLOYEE (LECTURA SOLAMENTE) ---
+access_it_employee_read_all,it.employee read all,hr.model_hr_employee,informe_turno.group_it_read_all,1,0,0,0
+access_it_employee_read_own,it.employee read own,hr.model_hr_employee,informe_turno.group_it_own,1,0,0,0
+
