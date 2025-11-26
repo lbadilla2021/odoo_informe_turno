@@ -240,23 +240,40 @@
                     <notebook>
                         <!-- Página Servicio -->
                         <page string="Servicio">
-                            <group col="4">
-                                <field name="hora_entrada_real"/>
-                                <field name="hora_entrada_real_fecha" readonly="1"/>
-                                <field name="hora_inicio_faena"/>
-                                <field name="hora_inicio_faena_fecha" readonly="1"/>
-                                <field name="hora_fin_faena"/>
-                                <field name="hora_fin_faena_fecha" readonly="1"/>
-                                <field name="hora_salida_real"/>
-                                <field name="hora_salida_real_fecha" readonly="1"/>
+                            <group>
+                                <div style="display: grid; grid-template-columns: 200px 120px 140px; row-gap: 8px; column-gap: 12px;">
+
+                                    <!-- Fila 1 -->
+                                    <span class="o_form_label">Hora entrada real</span>
+                                    <field name="hora_entrada_real" class="oe_inline"/>
+                                    <field name="hora_entrada_real_fecha" class="oe_inline" readonly="1" nolabel="1"/>
+
+                                    <!-- Fila 2 -->
+                                    <span class="o_form_label">Hora inicio faena</span>
+                                    <field name="hora_inicio_faena" class="oe_inline"/>
+                                    <field name="hora_inicio_faena_fecha" class="oe_inline" readonly="1" nolabel="1"/>
+
+                                    <!-- Fila 3 -->
+                                    <span class="o_form_label">Hora fin faena</span>
+                                    <field name="hora_fin_faena" class="oe_inline"/>
+                                    <field name="hora_fin_faena_fecha" class="oe_inline" readonly="1" nolabel="1"/>
+
+                                    <!-- Fila 4 -->
+                                    <span class="o_form_label">Hora salida real</span>
+                                    <field name="hora_salida_real" class="oe_inline"/>
+                                    <field name="hora_salida_real_fecha" class="oe_inline" readonly="1" nolabel="1"/>
+
+                                </div>
+                            </group>
+
+                            <group col="2">
+                                <!-- Campos adicionales -->
                                 <field name="area_id"/>
                                 <field name="nombre_equipo"/>
                                 <field name="tag"/>
                                 <field name="tipo_trabajo_id"/>
                                 <field name="especialidad_id"/>
                                 <field name="pedido_os"/>
-                            </group>
-                            <group col="2">
                                 <field name="descripcion"/>
                                 <field name="observaciones_servicio"/>
                             </group>
