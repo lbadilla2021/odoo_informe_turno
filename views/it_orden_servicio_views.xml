@@ -29,15 +29,15 @@
             <form string="Orden de Servicio">
                 <header>
                     <button name="action_descartar" string="Descartar" type="object"
-                            attrs="{'invisible': [('estado', '!=', 'licitacion')]}"/>
+                            invisible="estado != 'licitacion'"/>
                     <button name="action_adjudicar" string="Adjudicar" type="object" class="oe_highlight"
-                            attrs="{'invisible': [('estado', '!=', 'licitacion')]}"/>
+                            invisible="estado != 'licitacion'"/>
                     <button name="action_planificar" string="Planificar" type="object" class="oe_highlight"
-                            attrs="{'invisible': [('estado', '!=', 'adjudicado')]}"/>
+                            invisible="estado != 'adjudicado'"/>
                     <button name="action_cobrar" string="Cobrar" type="object" class="oe_highlight"
-                            attrs="{'invisible': [('estado', '!=', 'planificado')]}"/>
+                            invisible="estado != 'planificado'"/>
                     <button name="action_cerrar" string="Cerrar" type="object" class="oe_highlight"
-                            attrs="{'invisible': [('estado', '!=', 'por_cobrar')]}"/>
+                            invisible="estado != 'por_cobrar'"/>
                     <field name="estado" widget="statusbar"
                            statusbar_visible="licitacion,perdido,adjudicado,planificado,por_cobrar,cobrado"/>
                 </header>

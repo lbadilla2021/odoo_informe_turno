@@ -2,7 +2,7 @@
 {
     "name": "Informe Turno",
     "summary": "Registro móvil de informes de turno con fotos antes/después",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Operations",
     "author": "Apex / Barca",
     "license": "LGPL-3",

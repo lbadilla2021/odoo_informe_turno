@@ -4,7 +4,6 @@ from datetime import timedelta
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
-@api.model
 def _quarter_hour_selection(self):
     sels = []
     for h in range(0, 24):
@@ -229,15 +228,16 @@ class ITInforme(models.Model):
         for rec in self:
             rec.name = rec.code or _("Informe")
 
-    @api.model
-    def create(self, vals):
-        code = (vals.get("code") or "").strip()
-        if not code:
-            raise ValidationError(_("Debe ingresar el Código (folio en papel)."))
-        vals["code"] = code
-        if not vals.get("supervisor_id"):
-            vals["supervisor_id"] = self.env.user.id
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            code = (vals.get("code") or "").strip()
+            if not code:
+                raise ValidationError(_("Debe ingresar el Código (folio en papel)."))
+            vals["code"] = code
+            if not vals.get("supervisor_id"):
+                vals["supervisor_id"] = self.env.user.id
+        return super().create(vals_list)
 
     def write(self, vals):
         if "supervisor_id" in vals:
