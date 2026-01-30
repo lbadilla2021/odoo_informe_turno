@@ -5,7 +5,7 @@
     <record id="action_it_informes" model="ir.actions.act_window">
         <field name="name">Informes</field>
         <field name="res_model">it.informe</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p>Crea y gestiona Informes de Turno.</p>
         </field>
@@ -22,30 +22,30 @@
     <record id="action_it_area" model="ir.actions.act_window">
         <field name="name">Áreas</field>
         <field name="res_model">it.area</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem id="menu_it_area" name="Áreas" parent="menu_it_tablas" action="action_it_area" sequence="10"/>
 
     <record id="action_it_tipo_trabajo" model="ir.actions.act_window">
         <field name="name">Tipos de trabajo</field>
         <field name="res_model">it.tipo.trabajo</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem id="menu_it_tipo_trabajo" name="Tipos de trabajo" parent="menu_it_tablas" action="action_it_tipo_trabajo" sequence="20"/>
 
     <record id="action_it_tipo_servicio" model="ir.actions.act_window">
         <field name="name">Tipos de servicio</field>
         <field name="res_model">it.tipo.servicio</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
-    <record id="view_it_tipo_servicio_tree" model="ir.ui.view">
-        <field name="name">it.tipo.servicio.tree</field>
+    <record id="view_it_tipo_servicio_list" model="ir.ui.view">
+        <field name="name">it.tipo.servicio.list</field>
         <field name="model">it.tipo.servicio</field>
         <field name="arch" type="xml">
-            <tree string="Tipos de servicio">
+            <list string="Tipos de servicio">
                 <field name="name"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -68,18 +68,18 @@
     <record id="action_it_especialidad" model="ir.actions.act_window">
         <field name="name">Especialidades</field>
         <field name="res_model">it.especialidad</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem id="menu_it_especialidad" name="Especialidades" parent="menu_it_tablas" action="action_it_especialidad" sequence="30"/>
 
-    <record id="view_it_tipo_vehiculo_tree" model="ir.ui.view">
-        <field name="name">it.tipo.vehiculo.tree</field>
+    <record id="view_it_tipo_vehiculo_list" model="ir.ui.view">
+        <field name="name">it.tipo.vehiculo.list</field>
         <field name="model">it.tipo.vehiculo</field>
         <field name="arch" type="xml">
-            <tree string="Tipos de vehículo">
+            <list string="Tipos de vehículo">
                 <field name="name"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -101,93 +101,93 @@
     <record id="action_it_tipo_vehiculo" model="ir.actions.act_window">
         <field name="name">Tipos de vehículo</field>
         <field name="res_model">it.tipo.vehiculo</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem id="menu_it_tipo_vehiculo" name="Tipos de vehículo" parent="menu_it_tablas" action="action_it_tipo_vehiculo" sequence="40"/>
 
-    <record id="view_it_clientes_tree" model="ir.ui.view">
-        <field name="name">res.partner.it.clientes.tree</field>
+    <record id="view_it_clientes_list" model="ir.ui.view">
+        <field name="name">res.partner.it.clientes.list</field>
         <field name="model">res.partner</field>
         <field name="arch" type="xml">
-            <tree string="Clientes">
+            <list string="Clientes">
                 <field name="name"/>
                 <field name="country_id" optional="hide"/>
                 <field name="email" optional="hide"/>
                 <field name="phone" optional="hide"/>
-            </tree>
+            </list>
         </field>
     </record>
 
     <record id="action_it_clientes" model="ir.actions.act_window">
         <field name="name">Clientes</field>
         <field name="res_model">res.partner</field>
-        <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="view_it_clientes_tree"/>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_it_clientes_list"/>
         <field name="domain">[("parent_id", "=", False), ("is_company", "=", True)]</field>
         <field name="context">{"default_is_company": True, "default_company_type": "company"}</field>
     </record>
     <menuitem id="menu_it_clientes" name="Clientes" parent="menu_it_tablas" action="action_it_clientes" sequence="45"/>
 
-    <record id="view_it_establecimientos_tree" model="ir.ui.view">
-        <field name="name">res.partner.it.establecimientos.tree</field>
+    <record id="view_it_establecimientos_list" model="ir.ui.view">
+        <field name="name">res.partner.it.establecimientos.list</field>
         <field name="model">res.partner</field>
         <field name="arch" type="xml">
-            <tree string="Establecimientos">
+            <list string="Establecimientos">
                 <field name="name"/>
                 <field name="parent_id" string="Cliente"/>
                 <field name="city" optional="hide"/>
                 <field name="phone" optional="hide"/>
-            </tree>
+            </list>
         </field>
     </record>
 
     <record id="action_it_establecimientos" model="ir.actions.act_window">
         <field name="name">Establecimientos</field>
         <field name="res_model">res.partner</field>
-        <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="view_it_establecimientos_tree"/>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_it_establecimientos_list"/>
         <field name="domain">[("parent_id", "!=", False)]</field>
         <field name="context">{"default_parent_id": False, "default_company_type": "company"}</field>
     </record>
     <menuitem id="menu_it_establecimientos" name="Establecimientos" parent="menu_it_tablas" action="action_it_establecimientos" sequence="50"/>
 
     <!-- Empleados solo lectura -->
-    <record id="view_hr_employee_tree_readonly" model="ir.ui.view">
-        <field name="name">hr.employee.tree.readonly.for.it</field>
+    <record id="view_hr_employee_list_readonly" model="ir.ui.view">
+        <field name="name">hr.employee.list.readonly.for.it</field>
         <field name="model">hr.employee</field>
         <field name="arch" type="xml">
-            <tree create="0" edit="0" delete="0">
+            <list create="0" edit="0" delete="0">
                 <field name="identification_id"/>
                 <field name="name"/>
                 <field name="job_id"/>
                 <field name="work_email"/>
                 <field name="work_phone"/>
                 <field name="category_ids"/>
-            </tree>
+            </list>
         </field>
     </record>
 
     <record id="action_it_employees_readonly" model="ir.actions.act_window">
         <field name="name">Empleados (solo lectura)</field>
         <field name="res_model">hr.employee</field>
-        <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="view_hr_employee_tree_readonly"/>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_hr_employee_list_readonly"/>
     </record>
     <menuitem id="menu_it_employees_readonly" name="Empleados (solo lectura)" parent="menu_it_personas" action="action_it_employees_readonly" sequence="10"/>
 
     <record id="action_hr_employee_category" model="ir.actions.act_window">
         <field name="name">Etiquetas de cargo</field>
         <field name="res_model">hr.employee.category</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem id="menu_it_employee_category" name="Etiquetas de cargo" parent="menu_it_personas" action="action_hr_employee_category" sequence="20"/>
 
-    <!-- Vista Tree -->
-    <record id="it_informe_tree" model="ir.ui.view">
-        <field name="name">it.informe.tree</field>
+    <!-- Vista list -->
+    <record id="it_informe_list" model="ir.ui.view">
+        <field name="name">it.informe.list</field>
         <field name="model">it.informe</field>
         <field name="arch" type="xml">
-            <tree string="Informes" create="true" delete="true">
+            <list string="Informes" create="true" delete="true">
                 <field name="code" optional="show"/>
                 <field name="fecha_ejecucion" optional="show"/>
                 <field name="establecimiento_id" optional="show"/>
@@ -218,7 +218,7 @@
                 <field name="barreras_quimica" optional="hide"/>
                 <field name="cant_barreras_quimicas" optional="hide"/>
                 <field name="aspirado_alta_temperatura" optional="hide"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -293,12 +293,12 @@
                         <page string="Recursos">
                             <group>
                                 <field name="vehiculo_line_ids">
-                                    <tree editable="bottom">
+                                    <list editable="bottom">
                                         <field name="tipo_vehiculo_id"/>
                                         <field name="vehiculo_id"/>
                                         <field name="medida"/>
                                         <field name="lts_petroline"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </group>
                         </page>
@@ -324,13 +324,13 @@
                             </group>
 
                             <group string="Fotos Antes/Después">
-                                <field name="foto_pair_ids" context="{'default_informe_id':active_id}">
-                                    <tree editable="bottom">
+                                <field name="foto_pair_ids" context="{'default_informe_id': id}">
+                                    <list editable="bottom">
                                         <field name="sequence" widget="handle"/>
                                         <field name="etiqueta"/>
                                         <field name="foto_antes" widget="image"/>
                                         <field name="foto_despues" widget="image"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </group>
                         </page>

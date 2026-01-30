@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_it_orden_servicio_tree" model="ir.ui.view">
-        <field name="name">it.orden.servicio.tree</field>
+    <record id="view_it_orden_servicio_list" model="ir.ui.view">
+        <field name="name">it.orden.servicio.list</field>
         <field name="model">it.orden.servicio</field>
         <field name="arch" type="xml">
-            <tree string="Órdenes de Servicio">
+            <list string="Órdenes de Servicio">
                 <field name="name"/>
                 <field name="numero_pedido"/>
                 <field name="descripcion_servicio"/>
@@ -18,7 +18,7 @@
                 <field name="valor_adjudicado"/>
                 <field name="valor_final"/>
                 <field name="estado"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -27,17 +27,17 @@
         <field name="model">it.orden.servicio</field>
         <field name="arch" type="xml">
             <form string="Orden de Servicio">
-                <header>
+             <header>
                     <button name="action_descartar" string="Descartar" type="object"
-                            attrs="{'invisible': [('estado', '!=', 'licitacion')]}"/>
+                            invisible="estado != 'licitacion'"/>
                     <button name="action_adjudicar" string="Adjudicar" type="object" class="oe_highlight"
-                            attrs="{'invisible': [('estado', '!=', 'licitacion')]}"/>
+                            invisible="estado != 'licitacion'"/>
                     <button name="action_planificar" string="Planificar" type="object" class="oe_highlight"
-                            attrs="{'invisible': [('estado', '!=', 'adjudicado')]}"/>
+                            invisible="estado != 'adjudicado'"/>
                     <button name="action_cobrar" string="Cobrar" type="object" class="oe_highlight"
-                            attrs="{'invisible': [('estado', '!=', 'planificado')]}"/>
+                            invisible="estado != 'planificado'"/>
                     <button name="action_cerrar" string="Cerrar" type="object" class="oe_highlight"
-                            attrs="{'invisible': [('estado', '!=', 'por_cobrar')]}"/>
+                            invisible="estado != 'por_cobrar'"/>
                     <field name="estado" widget="statusbar"
                            statusbar_visible="licitacion,perdido,adjudicado,planificado,por_cobrar,cobrado"/>
                 </header>
@@ -109,6 +109,6 @@
     <record id="action_it_orden_servicio" model="ir.actions.act_window">
         <field name="name">Órdenes de Servicio</field>
         <field name="res_model">it.orden.servicio</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban,list,form</field>
     </record>
 </odoo>
