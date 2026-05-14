@@ -4,6 +4,18 @@ from datetime import timedelta
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
+from odoo import models, fields
+
+class HrEmployeePublic(models.Model):
+    _inherit = 'hr.employee.public'
+
+    job_family_id = fields.Many2one(
+        'hr.job.family',
+        string='Familia de Cargo',
+        related='job_id.job_family_id',
+        readonly=True,
+    )
+
 def _quarter_hour_selection(self):
     sels = []
     for h in range(0, 24):
@@ -129,7 +141,7 @@ class ITInforme(models.Model):
     orden_servicio_id = fields.Many2one(
         "it.orden.servicio",
         string="Orden de Servicio",
-        domain="[('estado', '=', 'adjudicado'), ('establecimiento_id', '=', establecimiento_id)]",
+        domain="[('estado', '=', 'planificado'), ('establecimiento_id', '=', establecimiento_id)]",
         required=False,
     )
 
@@ -172,7 +184,7 @@ class ITInforme(models.Model):
     observaciones_servicio = fields.Text("Observaciones del servicio")
 
     ito_planta = fields.Char("ITO planta", required=True)
-    prevencionista_id = fields.Many2one("hr.employee", string="Prevencionista", required=True)
+    prevencionista_id = fields.Many2one("hr.employee", string="Prevencionista", domain="[('job_family_id.name', '=', 'Prevencionistas')]")
     
     
     #operador_id = fields.Many2one("hr.employee", string="Operador", required=True)
@@ -182,13 +194,13 @@ class ITInforme(models.Model):
     # Operadores de servicio
     # Operadores
     operador_ids = fields.Many2many(
-        'hr.employee',
-        'it_informe_operadores_rel',
-        'informe_id',
-        'employee_id',
-        string='Operadores',
-        domain="[('category_ids.name', '=', 'Operadores')]"
-    )
+    'hr.employee',
+    'it_informe_operadores_rel',
+    'informe_id',
+    'employee_id',
+    string='Operadores',
+    domain="[('job_family_id.name', '=', ['Operativos Operacion'])]"
+)
 
         # Operadores de Servicio
     operador_servicio_ids = fields.Many2many(
@@ -197,7 +209,7 @@ class ITInforme(models.Model):
         'informe_id',
         'employee_id',
         string='Operadores de Servicio',
-        domain="[('category_ids.name', '=', 'Operadores de Servicios')]"
+        domain="[('job_family_id.name', '=', ['Operativos Operacion'])]"
     )
 
     vehiculo_line_ids = fields.One2many(

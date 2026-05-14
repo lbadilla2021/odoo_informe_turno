@@ -12,6 +12,7 @@
         "mail",
         "hr",
         "hr_skills",   # ✅ agregado: asegura que el modelo hr.employee.tag esté disponible
+        "zhr_ajustes",
         "fleet",
         "contacts",
     ],
@@ -28,7 +29,7 @@
         "data/clientes_establecimientos.xml",
 
         "security/informe_turno_groups.xml", 
-        "security/informe_turno_security.xml",
+        #"security/informe_turno_security.xml",
         "security/ir.model.access.csv",
 
         "views/it_orden_servicio_views.xml",
