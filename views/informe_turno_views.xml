@@ -12,7 +12,7 @@
     </record>
 
     <!-- Menús -->
-    <menuitem id="menu_it_root" name="Informe Turno" sequence="10"/>
+    <menuitem id="menu_it_root" name="Operaciones" sequence="10"/>
     <menuitem id="menu_it_informe" name="Informe" parent="menu_it_root" sequence="10"/>
     <menuitem id="menu_it_tablas" name="Tablas" parent="menu_it_root" sequence="20"/>
     <menuitem id="menu_it_personas" name="Personas" parent="menu_it_root" sequence="30"/>
@@ -26,45 +26,6 @@
     </record>
     <menuitem id="menu_it_area" name="Áreas" parent="menu_it_tablas" action="action_it_area" sequence="10"/>
 
-    <record id="action_it_tipo_trabajo" model="ir.actions.act_window">
-        <field name="name">Tipos de trabajo</field>
-        <field name="res_model">it.tipo.trabajo</field>
-        <field name="view_mode">list,form</field>
-    </record>
-    <menuitem id="menu_it_tipo_trabajo" name="Tipos de trabajo" parent="menu_it_tablas" action="action_it_tipo_trabajo" sequence="20"/>
-
-    <record id="action_it_tipo_servicio" model="ir.actions.act_window">
-        <field name="name">Tipos de servicio</field>
-        <field name="res_model">it.tipo.servicio</field>
-        <field name="view_mode">list,form</field>
-    </record>
-    <record id="view_it_tipo_servicio_list" model="ir.ui.view">
-        <field name="name">it.tipo.servicio.list</field>
-        <field name="model">it.tipo.servicio</field>
-        <field name="arch" type="xml">
-            <list string="Tipos de servicio">
-                <field name="name"/>
-                <field name="active"/>
-            </list>
-        </field>
-    </record>
-
-    <record id="view_it_tipo_servicio_form" model="ir.ui.view">
-        <field name="name">it.tipo.servicio.form</field>
-        <field name="model">it.tipo.servicio</field>
-        <field name="arch" type="xml">
-            <form string="Tipo de servicio">
-                <sheet>
-                    <group>
-                        <field name="name"/>
-                        <field name="active"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-    <menuitem id="menu_it_tipo_servicio" name="Tipos de servicio" parent="menu_it_tablas" action="action_it_tipo_servicio" sequence="25"/>
-
     <record id="action_it_especialidad" model="ir.actions.act_window">
         <field name="name">Especialidades</field>
         <field name="res_model">it.especialidad</field>
@@ -72,84 +33,6 @@
     </record>
     <menuitem id="menu_it_especialidad" name="Especialidades" parent="menu_it_tablas" action="action_it_especialidad" sequence="30"/>
 
-    <record id="view_it_tipo_vehiculo_list" model="ir.ui.view">
-        <field name="name">it.tipo.vehiculo.list</field>
-        <field name="model">it.tipo.vehiculo</field>
-        <field name="arch" type="xml">
-            <list string="Tipos de vehículo">
-                <field name="name"/>
-                <field name="active"/>
-            </list>
-        </field>
-    </record>
-
-    <record id="view_it_tipo_vehiculo_form" model="ir.ui.view">
-        <field name="name">it.tipo.vehiculo.form</field>
-        <field name="model">it.tipo.vehiculo</field>
-        <field name="arch" type="xml">
-            <form string="Tipo de vehículo">
-                <sheet>
-                    <group>
-                        <field name="name"/>
-                        <field name="active"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record id="action_it_tipo_vehiculo" model="ir.actions.act_window">
-        <field name="name">Tipos de vehículo</field>
-        <field name="res_model">it.tipo.vehiculo</field>
-        <field name="view_mode">list,form</field>
-    </record>
-    <menuitem id="menu_it_tipo_vehiculo" name="Tipos de vehículo" parent="menu_it_tablas" action="action_it_tipo_vehiculo" sequence="40"/>
-
-    <record id="view_it_clientes_list" model="ir.ui.view">
-        <field name="name">res.partner.it.clientes.list</field>
-        <field name="model">res.partner</field>
-        <field name="arch" type="xml">
-            <list string="Clientes">
-                <field name="name"/>
-                <field name="country_id" optional="hide"/>
-                <field name="email" optional="hide"/>
-                <field name="phone" optional="hide"/>
-            </list>
-        </field>
-    </record>
-
-    <record id="action_it_clientes" model="ir.actions.act_window">
-        <field name="name">Clientes</field>
-        <field name="res_model">res.partner</field>
-        <field name="view_mode">list,form</field>
-        <field name="view_id" ref="view_it_clientes_list"/>
-        <field name="domain">[("parent_id", "=", False), ("is_company", "=", True)]</field>
-        <field name="context">{"default_is_company": True, "default_company_type": "company"}</field>
-    </record>
-    <menuitem id="menu_it_clientes" name="Clientes" parent="menu_it_tablas" action="action_it_clientes" sequence="45"/>
-
-    <record id="view_it_establecimientos_list" model="ir.ui.view">
-        <field name="name">res.partner.it.establecimientos.list</field>
-        <field name="model">res.partner</field>
-        <field name="arch" type="xml">
-            <list string="Establecimientos">
-                <field name="name"/>
-                <field name="parent_id" string="Cliente"/>
-                <field name="city" optional="hide"/>
-                <field name="phone" optional="hide"/>
-            </list>
-        </field>
-    </record>
-
-    <record id="action_it_establecimientos" model="ir.actions.act_window">
-        <field name="name">Establecimientos</field>
-        <field name="res_model">res.partner</field>
-        <field name="view_mode">list,form</field>
-        <field name="view_id" ref="view_it_establecimientos_list"/>
-        <field name="domain">[("parent_id", "!=", False)]</field>
-        <field name="context">{"default_parent_id": False, "default_company_type": "company"}</field>
-    </record>
-    <menuitem id="menu_it_establecimientos" name="Establecimientos" parent="menu_it_tablas" action="action_it_establecimientos" sequence="50"/>
 
     <!-- Empleados solo lectura -->
     <record id="view_hr_employee_list_readonly" model="ir.ui.view">
@@ -189,10 +72,14 @@
         <field name="arch" type="xml">
             <list string="Informes" create="true" delete="true">
                 <field name="code" optional="show"/>
+                <field name="orden_servicio_id" string="Proyecto" optional="show"/>
+                <field name="proyecto_codigo" optional="show"/>
+                <field name="proyecto_nombre" optional="show"/>
                 <field name="fecha_ejecucion" optional="show"/>
                 <field name="establecimiento_id" optional="show"/>
                 <field name="area_id" optional="show"/>
                 <field name="tipo_trabajo_id" optional="show"/>
+                <field name="tipo_servicio_id" optional="show"/>
                 <field name="supervisor_id" optional="show"/>
                 <field name="hora_entrada_real" optional="show"/>
                 <field name="hora_entrada_real_fecha" optional="show"/>
@@ -207,7 +94,6 @@
                 <field name="nombre_equipo" optional="hide"/>
                 <field name="tag" optional="hide"/>
                 <field name="especialidad_id" optional="hide"/>
-                <field name="pedido_os" optional="hide"/>
                 <field name="descripcion" optional="hide"/>
                 <field name="observaciones_servicio" optional="hide"/>
                 <field name="ito_planta" optional="hide"/>
@@ -231,9 +117,12 @@
                 <sheet>
                     <group col="6">
                         <field name="code" modifiers="{'readonly':[('id','!=',False)]}"/>
-                        <field name="fecha_ejecucion"/>
-                        <field name="establecimiento_id" options="{'no_create_edit':True}"/>
                         <field name="orden_servicio_id" options="{'no_create': True}"/>
+                        <field name="proyecto_codigo" readonly="1"/>
+                        <field name="proyecto_nombre" readonly="1"/>
+                        <field name="fecha_ejecucion"/>
+                        <field name="establecimiento_id" options="{'no_create_edit':True}"
+                               readonly="orden_servicio_id"/>
                         <field name="supervisor_id" readonly="1"/>
                     </group>
 
@@ -271,10 +160,10 @@
                                 <field name="area_id"/>
                                 <field name="nombre_equipo"/>
                                 <field name="tag"/>
-                                <field name="tipo_trabajo_id"/>
+                                <field name="tipo_trabajo_id" readonly="orden_servicio_id"/>
+                                <field name="tipo_servicio_id" readonly="orden_servicio_id"/>
                                 <field name="especialidad_id"/>
-                                <field name="pedido_os"/>
-                                <field name="descripcion"/>
+                                <field name="descripcion" readonly="orden_servicio_id"/>
                                 <field name="observaciones_servicio"/>
                             </group>
                         </page>
@@ -295,7 +184,7 @@
                                 <field name="vehiculo_line_ids">
                                     <list editable="bottom">
                                         <field name="tipo_vehiculo_id"/>
-                                        <field name="vehiculo_id"/>
+                                        <field name="vehiculo_id" domain="[('category_id', '=', tipo_vehiculo_id)]"/>
                                         <field name="medida"/>
                                         <field name="lts_petroline"/>
                                     </list>

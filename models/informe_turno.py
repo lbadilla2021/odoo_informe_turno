@@ -34,22 +34,6 @@ class ITArea(models.Model):
     active = fields.Boolean(default=True)
 
 
-class ITTipoTrabajo(models.Model):
-    _name = "it.tipo.trabajo"
-    _description = "Tipo de Trabajo"
-
-    name = fields.Char("Nombre", required=True)
-    active = fields.Boolean(default=True)
-
-
-class ITTipoServicio(models.Model):
-    _name = "it.tipo.servicio"
-    _description = "Tipo de Servicio"
-
-    name = fields.Char("Nombre", required=True)
-    active = fields.Boolean(default=True)
-
-
 class ITEspecialidad(models.Model):
     _name = "it.especialidad"
     _description = "Especialidad"
@@ -60,10 +44,12 @@ class ITEspecialidad(models.Model):
 
 class ITTipoVehiculo(models.Model):
     _name = "it.tipo.vehiculo"
-    _description = "Tipo de vehículo"
+    _description = "Tipo de vehículo legado"
 
     name = fields.Char("Nombre", required=True)
     active = fields.Boolean(default=True)
+
+
 
 
 class ITInformeFotoPair(models.Model):
@@ -84,13 +70,51 @@ class ITInformeVehiculo(models.Model):
 
     informe_id = fields.Many2one("it.informe", required=True, ondelete="cascade")
     tipo_vehiculo_id = fields.Many2one(
-        "it.tipo.vehiculo", string="Tipo de vehículo", required=True
+        "fleet.vehicle.model.category", string="Tipo de vehículo", required=True
     )
     vehiculo_id = fields.Many2one(
-        "fleet.vehicle", string="Vehículo", required=True
+        "fleet.vehicle",
+        string="Vehículo",
+        required=True,
+        domain="[('category_id', '=', tipo_vehiculo_id)]",
     )
     medida = fields.Integer("Kms/Horas", required=True)
     lts_petroline = fields.Float("Lts Petroline", digits=(16, 2))
+
+    @api.onchange("tipo_vehiculo_id")
+    def _onchange_tipo_vehiculo_id(self):
+        for record in self:
+            if (
+                record.vehiculo_id
+                and record.vehiculo_id.category_id != record.tipo_vehiculo_id
+            ):
+                record.vehiculo_id = False
+
+    @api.onchange("vehiculo_id")
+    def _onchange_vehiculo_id(self):
+        for record in self:
+            if record.vehiculo_id and not record.tipo_vehiculo_id:
+                record.tipo_vehiculo_id = record.vehiculo_id.category_id
+
+    @api.constrains("tipo_vehiculo_id", "vehiculo_id")
+    def _check_vehiculo_categoria(self):
+        for record in self.filtered(lambda line: line.tipo_vehiculo_id and line.vehiculo_id):
+            if record.vehiculo_id.category_id != record.tipo_vehiculo_id:
+                raise ValidationError(
+                    _("El vehículo seleccionado debe pertenecer al tipo de vehículo indicado.")
+                )
+
+    def init(self):
+        self.env.cr.execute(
+            """
+            UPDATE it_informe_vehiculo AS line
+               SET tipo_vehiculo_id = category.id
+              FROM it_tipo_vehiculo AS old_type,
+                   fleet_vehicle_model_category AS category
+             WHERE line.tipo_vehiculo_id = old_type.id
+               AND lower(category.name) = lower(old_type.name)
+            """
+        )
 
 
 class ITInforme(models.Model):
@@ -140,9 +164,19 @@ class ITInforme(models.Model):
     establecimiento_id = fields.Many2one("res.partner", string="Establecimiento", domain="[('parent_id','!=',False)]", required=True, tracking=True)
     orden_servicio_id = fields.Many2one(
         "it.orden.servicio",
-        string="Orden de Servicio",
-        domain="[('estado', '=', 'planificado'), ('establecimiento_id', '=', establecimiento_id)]",
+        string="Proyecto",
+        domain="[('estado', '=', 'adjudicado')]",
         required=False,
+    )
+    proyecto_codigo = fields.Char(
+        string="Código de Proyecto",
+        related="orden_servicio_id.name",
+        readonly=True,
+    )
+    proyecto_nombre = fields.Text(
+        string="Nombre de Servicio",
+        related="orden_servicio_id.descripcion_servicio",
+        readonly=True,
     )
 
     hora_entrada_real = fields.Selection(selection=_quarter_hour_selection,string="Hora entrada real",required=True)
@@ -179,8 +213,8 @@ class ITInforme(models.Model):
     nombre_equipo = fields.Char("Nombre Equipo", required=True)
     tag = fields.Char("TAG", required=True)
     tipo_trabajo_id = fields.Many2one("it.tipo.trabajo", string="Tipo de trabajo", required=True)
+    tipo_servicio_id = fields.Many2one("it.tipo.servicio", string="Tipo de servicio")
     especialidad_id = fields.Many2one("it.especialidad", string="Especialidad", required=True)
-    pedido_os = fields.Char("Pedido OS")
     observaciones_servicio = fields.Text("Observaciones del servicio")
 
     ito_planta = fields.Char("ITO planta", required=True)
@@ -199,7 +233,7 @@ class ITInforme(models.Model):
     'informe_id',
     'employee_id',
     string='Operadores',
-    domain="[('job_family_id.name', '=', ['Operativos Operacion'])]"
+    domain="[('job_family_id.name', 'in', ['Operativos Mantención', 'Operativos Operación'])]"
 )
 
         # Operadores de Servicio
@@ -209,7 +243,7 @@ class ITInforme(models.Model):
         'informe_id',
         'employee_id',
         string='Operadores de Servicio',
-        domain="[('job_family_id.name', '=', ['Operativos Operacion'])]"
+        domain="[('job_family_id.name', 'in', ['Operativos Mantención', 'Operativos Operación'])]"
     )
 
     vehiculo_line_ids = fields.One2many(
@@ -242,6 +276,7 @@ class ITInforme(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        self._prepare_proyecto_values(vals_list)
         for vals in vals_list:
             code = (vals.get("code") or "").strip()
             if not code:
@@ -252,9 +287,40 @@ class ITInforme(models.Model):
         return super().create(vals_list)
 
     def write(self, vals):
-        if "supervisor_id" in vals:
-            vals.pop("supervisor_id", None)
-        return super().write(vals)
+        values = dict(vals)
+        if "supervisor_id" in values:
+            values.pop("supervisor_id", None)
+        self._prepare_proyecto_values([values])
+        return super().write(values)
+
+    @api.onchange("orden_servicio_id")
+    def _onchange_orden_servicio_id(self):
+        for record in self:
+            if record.orden_servicio_id:
+                record.update(record._get_proyecto_values(record.orden_servicio_id))
+
+    def _prepare_proyecto_values(self, vals_list):
+        proyectos = self.env["it.orden.servicio"].browse(
+            [
+                vals["orden_servicio_id"]
+                for vals in vals_list
+                if vals.get("orden_servicio_id")
+            ]
+        ).exists()
+        proyectos_by_id = {proyecto.id: proyecto for proyecto in proyectos}
+        for vals in vals_list:
+            proyecto = proyectos_by_id.get(vals.get("orden_servicio_id"))
+            if proyecto:
+                vals.update(self._get_proyecto_values(proyecto))
+
+    @api.model
+    def _get_proyecto_values(self, proyecto):
+        return {
+            "establecimiento_id": proyecto.establecimiento_id.id,
+            "descripcion": proyecto.descripcion_servicio,
+            "tipo_trabajo_id": proyecto.tipo_trabajo_id.id,
+            "tipo_servicio_id": proyecto.tipo_servicio_id.id,
+        }
 
     @api.depends("vehiculo_line_ids")
     def _compute_resource_counts(self):

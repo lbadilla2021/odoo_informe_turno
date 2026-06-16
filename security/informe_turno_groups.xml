@@ -1,6 +1,6 @@
 <odoo>
     <record id="module_category_barca_it" model="ir.module.category">
-        <field name="name">Informe Turno</field>
+        <field name="name">Operaciones</field>
         <field name="sequence">31</field>
     </record>
 
