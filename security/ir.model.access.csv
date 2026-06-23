@@ -4,11 +4,14 @@ access_it_informe_read,it.informe read,model_it_informe,informe_turno.group_it_r
 access_it_informe_admin,it.informe admin,model_it_informe,base.group_system,1,1,1,1
 access_it_foto_pair_user,it.foto.pair user,model_it_informe_foto_pair,informe_turno.group_it_own,1,1,1,1
 access_it_foto_pair_admin,it.foto.pair admin,model_it_informe_foto_pair,base.group_system,1,1,1,1
+access_it_area_user,it.area user,model_it_area,informe_turno.group_it_own,1,0,0,0
 access_it_area_admin,it.area admin,model_it_area,base.group_system,1,1,1,1
+access_it_tipo_user,it.tipo user,zoc_ajustes.model_it_tipo_trabajo,informe_turno.group_it_own,1,0,0,0
 access_it_tipo_admin,it.tipo admin,zoc_ajustes.model_it_tipo_trabajo,base.group_system,1,1,1,1
-access_it_tipo_servicio_user,it.tipo.servicio user,zoc_ajustes.model_it_tipo_servicio,informe_turno.group_it_own,1,1,1,1
+access_it_tipo_servicio_user,it.tipo.servicio user,zoc_ajustes.model_it_tipo_servicio,informe_turno.group_it_own,1,0,0,0
 access_it_tipo_servicio_read,it.tipo.servicio read,zoc_ajustes.model_it_tipo_servicio,informe_turno.group_it_read_all,1,0,0,0
 access_it_tipo_servicio_admin,it.tipo.servicio admin,zoc_ajustes.model_it_tipo_servicio,base.group_system,1,1,1,1
+access_it_especialidad_user,it.especialidad user,model_it_especialidad,informe_turno.group_it_own,1,0,0,0
 access_it_especialidad_admin,it.especialidad admin,model_it_especialidad,base.group_system,1,1,1,1
 access_it_informe_vehiculo_user,it.informe.vehiculo user,model_it_informe_vehiculo,informe_turno.group_it_own,1,1,1,1
 access_it_informe_vehiculo_read,it.informe.vehiculo read,model_it_informe_vehiculo,informe_turno.group_it_read_all,1,0,0,0
@@ -16,3 +19,21 @@ access_it_informe_vehiculo_admin,it.informe.vehiculo admin,model_it_informe_vehi
 access_res_partner_it_user,res.partner it user,base.model_res_partner,informe_turno.group_it_own,1,1,1,1
 access_res_partner_it_read,res.partner it read,base.model_res_partner,informe_turno.group_it_read_all,1,0,0,0
 access_it_orden_servicio_user,it.orden.servicio user,zoc_ajustes.model_it_orden_servicio,informe_turno.group_it_own,1,0,0,0
+access_barca_maintenance_request_it_user,barca.maintenance.request it user,zmm_ajustes.model_barca_maintenance_request,informe_turno.group_it_own,1,1,1,0
+access_barca_maintenance_request_it_admin,barca.maintenance.request it admin,zmm_ajustes.model_barca_maintenance_request,base.group_system,1,1,1,1
+access_barca_maintenance_checklist_it_user,barca.maintenance.checklist it user,zmm_ajustes.model_barca_maintenance_checklist,informe_turno.group_it_own,1,1,1,0
+access_barca_maintenance_checklist_it_admin,barca.maintenance.checklist it admin,zmm_ajustes.model_barca_maintenance_checklist,base.group_system,1,1,1,1
+access_barca_maintenance_checklist_line_it_user,barca.maintenance.checklist.line it user,zmm_ajustes.model_barca_maintenance_checklist_line,informe_turno.group_it_own,1,1,1,0
+access_barca_maintenance_checklist_line_it_admin,barca.maintenance.checklist.line it admin,zmm_ajustes.model_barca_maintenance_checklist_line,base.group_system,1,1,1,1
+access_barca_maintenance_checklist_item_it_user,barca.maintenance.checklist.item it user,zmm_ajustes.model_barca_maintenance_checklist_item,informe_turno.group_it_own,1,0,0,0
+access_barca_maintenance_checklist_item_it_admin,barca.maintenance.checklist.item it admin,zmm_ajustes.model_barca_maintenance_checklist_item,base.group_system,1,1,1,1
+access_barca_maintenance_alert_it_user,barca.maintenance.alert it user,zmm_ajustes.model_barca_maintenance_alert,informe_turno.group_it_own,1,0,1,0
+access_barca_maintenance_alert_it_admin,barca.maintenance.alert it admin,zmm_ajustes.model_barca_maintenance_alert,base.group_system,1,1,1,1
+access_barca_maintenance_alert_line_it_user,barca.maintenance.alert.line it user,zmm_ajustes.model_barca_maintenance_alert_line,informe_turno.group_it_own,1,0,0,0
+access_barca_maintenance_alert_line_it_admin,barca.maintenance.alert.line it admin,zmm_ajustes.model_barca_maintenance_alert_line,base.group_system,1,1,1,1
+access_barca_maintenance_alert_line_material_it_user,barca.maintenance.alert.line.material it user,zmm_ajustes.model_barca_maintenance_alert_line_material,informe_turno.group_it_own,1,0,0,0
+access_barca_maintenance_alert_line_material_it_admin,barca.maintenance.alert.line.material it admin,zmm_ajustes.model_barca_maintenance_alert_line_material,base.group_system,1,1,1,1
+access_fleet_vehicle_it_maintenance_user,fleet.vehicle it maintenance user,fleet.model_fleet_vehicle,informe_turno.group_it_own,1,0,0,0
+access_fleet_vehicle_it_maintenance_admin,fleet.vehicle it maintenance admin,fleet.model_fleet_vehicle,base.group_system,1,0,0,0
+access_maintenance_equipment_it_user,maintenance.equipment it user,maintenance.model_maintenance_equipment,informe_turno.group_it_own,1,0,0,0
+access_maintenance_equipment_it_admin,maintenance.equipment it admin,maintenance.model_maintenance_equipment,base.group_system,1,0,0,0

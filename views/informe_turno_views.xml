@@ -14,7 +14,7 @@
     <!-- Menús -->
     <menuitem id="menu_it_root" name="Operaciones" sequence="10"/>
     <menuitem id="menu_it_informe" name="Informe" parent="menu_it_root" sequence="10"/>
-    <menuitem id="menu_it_tablas" name="Tablas" parent="menu_it_root" sequence="20"/>
+    <menuitem id="menu_it_tablas" name="Tablas" parent="menu_it_root" sequence="20" groups="base.group_system"/>
     <menuitem id="menu_it_personas" name="Personas" parent="menu_it_root" sequence="30"/>
     <menuitem id="menu_it_informes" name="Informes" parent="menu_it_informe" action="action_it_informes" sequence="10"/>
 
@@ -157,12 +157,12 @@
 
                             <group col="2">
                                 <!-- Campos adicionales -->
-                                <field name="area_id"/>
+                                <field name="area_id" options="{'no_create_edit': True}"/>
                                 <field name="nombre_equipo"/>
                                 <field name="tag"/>
-                                <field name="tipo_trabajo_id" readonly="orden_servicio_id"/>
-                                <field name="tipo_servicio_id" readonly="orden_servicio_id"/>
-                                <field name="especialidad_id"/>
+                                <field name="tipo_trabajo_id" readonly="orden_servicio_id" options="{'no_create_edit': True}"/>
+                                <field name="tipo_servicio_id" readonly="orden_servicio_id" options="{'no_create_edit': True}"/>
+                                <field name="especialidad_id" options="{'no_create_edit': True}"/>
                                 <field name="descripcion" readonly="orden_servicio_id"/>
                                 <field name="observaciones_servicio"/>
                             </group>

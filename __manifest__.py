@@ -16,6 +16,7 @@
         "fleet",
         "contacts",
         "zoc_ajustes",
+        "zmm_ajustes",
     ],
     "assets": {
         "web.assets_backend": [
@@ -33,6 +34,7 @@
         "security/ir.model.access.csv",
 
         "views/informe_turno_views.xml",
+        "views/maintenance_origin_views.xml",
     ],
     "application": True,
 }

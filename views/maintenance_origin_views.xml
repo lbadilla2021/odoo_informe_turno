@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_it_maintenance_request" model="ir.actions.act_window">
+        <field name="name">Solicitudes de Mantencion</field>
+        <field name="res_model">barca.maintenance.request</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'default_requested_by_id': uid}</field>
+    </record>
+
+    <record id="action_it_maintenance_checklist" model="ir.actions.act_window">
+        <field name="name">Checklists</field>
+        <field name="res_model">barca.maintenance.checklist</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'default_requested_by_id': uid}</field>
+    </record>
+
+    <menuitem
+        id="menu_it_maintenance_origins"
+        name="Origenes Avisos"
+        parent="menu_it_root"
+        sequence="15"
+        groups="informe_turno.group_it_own,base.group_system"
+    />
+
+    <menuitem
+        id="menu_it_maintenance_request"
+        name="Solicitud de Mantencion"
+        parent="menu_it_maintenance_origins"
+        action="action_it_maintenance_request"
+        sequence="10"
+        groups="informe_turno.group_it_own,base.group_system"
+    />
+
+    <menuitem
+        id="menu_it_maintenance_checklist"
+        name="Checklist"
+        parent="menu_it_maintenance_origins"
+        action="action_it_maintenance_checklist"
+        sequence="20"
+        groups="informe_turno.group_it_own,base.group_system"
+    />
+</odoo>
